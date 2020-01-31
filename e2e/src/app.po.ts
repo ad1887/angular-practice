@@ -6,6 +6,18 @@ export class AppPage {
   }
 
   getTitleText() {
-    return element(by.css('app-root .content span')).getText() as Promise<string>;
+    return element(by.css('app-root .container h3')).getText() as Promise<string>;
+  }
+
+  wait() {
+    browser.waitForAngular();
+  }
+
+  submtBtn () {
+    return element(by.className('mr-1'));
+  }
+
+  getNameValidationErrMsg () {
+    return element(by.css('.invalid-feedback div')).getText() as Promise<string>;
   }
 }

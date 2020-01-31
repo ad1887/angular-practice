@@ -1,27 +1,41 @@
-# TestAngularApp
+## Running the Application
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.23.
+1. Install the Angular CLI
 
-## Development server
+    `npm install -g @angular/cli`
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+1. Run `npm install`
 
-## Code scaffolding
+1. Run `ng serve -o`
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Create & Install Application on Mobile Device
 
-## Build
+1. Run `npm install -g cordova`
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+2. Run `cordova create mobile` // inside app directory
 
-## Running unit tests
+3. Remove `www` under `mobile` directory
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+4. Add symlink to angular app build directory i.e. `ln -s ./dist www`
 
-## Running end-to-end tests
+5. change base href under `mobile/index.html` to `./`
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+6. create a new script in package.json that let us run the project in your device "cordova": "cordova run android --device" // optional
 
-## Further help
+7. Check added platforms `cordova platform ls`
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+8. Check `cordova requirements` 
+
+9. Run `cordova platform add android`
+
+10. Install `java`
+
+11. Install `Gradle` to make build
+
+12. Run `cordova build`
+
+13. Run `cordova emulate android` // to run apk on emulator
+
+14. Run `cordova run android` // to install apk on device
+
+# Note: enable developer options, usb debugging options to install apk in device
