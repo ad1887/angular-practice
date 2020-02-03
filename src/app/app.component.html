@@ -30,15 +30,27 @@
             </div>
         </div>
         <!-- <input type="button" (click)="addEmployee()" value="Save" /> -->
-        <button class="btn btn-primary mr-1">Save</button>
+        <button class="btn btn-primary saveFrm">Save</button>
     </form>
-    <hr>
-    <div *ngFor="let emp of empData">
-        <div>
-            Employee Name: {{emp.name}}<br />
-            Empcode: {{emp.empcode}}<br />
-            Department: {{emp.department}}<br />
-            Grade: {{emp.grade}}<br /><br />
-        </div>
-    </div>
+    <br><br>
+    <table class="table table-hover empList">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Employee Name</th>
+                <th>Empcode</th>
+                <th>Department</th>
+                <th>Grade</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let emp of empData; index as i;">
+                <td>{{i+1}}</td>
+                <td>{{emp.name}}</td>
+                <td>{{emp.empcode}}</td>
+                <td>{{emp.department}}</td>
+                <td>{{emp.grade}}</td>
+            </tr>
+        </tbody>
+    </table>
 </div>

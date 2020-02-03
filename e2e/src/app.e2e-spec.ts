@@ -1,5 +1,6 @@
 import { AppPage } from './app.po';
 import { browser, logging } from 'protractor';
+import { empMockData } from './mockdata'
 
 describe('Angular Practice App', () => {
   let page: AppPage;
@@ -14,11 +15,29 @@ describe('Angular Practice App', () => {
   });
 
   it('should check the validation messages on blank form submission', () => {
-    page.navigateTo();
     browser.sleep(3000).then(() => {
       page.submtBtn().click();
-      page.wait();
-      expect(page.getNameValidationErrMsg()).toContain('Name is required');
+      // verify if err mesg found
+      expect(page.getValidationErrMsg()).toBe(true);
+    });
+  });
+
+  it('should submit the form with entered values and verify if new employee added in the list', () => {
+    page.getEmpListSize().then((emp) => {
+      let empListSize = emp.length;
+      console.log('current employees count in the list:', empListSize);
+      page.setFormFieldsVals(empMockData);
+      // verify if no err mesg found
+      expect(page.getValidationErrMsg()).toBe(false);
+      page.submtBtn().click().then(() => {
+        browser.sleep(5000).then(() => {
+          // verify if new record added in employee list
+          page.getEmpListSize().then((empl) => {
+            console.log('count after added new employee in the list', empl.length);
+            expect(empl.length).toBeGreaterThan(empListSize);
+          });
+        });
+      });
     });
   });
 

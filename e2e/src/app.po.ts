@@ -9,15 +9,31 @@ export class AppPage {
     return element(by.css('app-root .container h3')).getText() as Promise<string>;
   }
 
-  wait() {
+  wait(promise, time, msg) {
+    browser.wait(promise, time, msg);
+  }
+
+  waitForAngular() {
     browser.waitForAngular();
   }
 
   submtBtn () {
-    return element(by.className('mr-1'));
+    return element(by.className('saveFrm'));
   }
 
-  getNameValidationErrMsg () {
-    return element(by.css('.invalid-feedback div')).getText() as Promise<string>;
+  getValidationErrMsg () {
+    return element(by.css('.form-group .invalid-feedback')).isPresent();
+  }
+
+  setFormFieldsVals (empMockData) {
+    if(Object.keys(empMockData).length) {
+      Object.keys(empMockData).forEach((val, key) => {
+        element(by.css('input[formcontrolname="' + val + '"]')).sendKeys(empMockData[val]);
+      });
+    }
+  }
+
+  getEmpListSize () {
+    return element.all(by.css('.empList > tbody > tr'));
   }
 }

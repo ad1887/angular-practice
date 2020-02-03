@@ -40,7 +40,6 @@ export class AppComponent {
         return;
     }
     // display form values on success
-    console.log('SUCCESS!! :-)\n\n' + JSON.stringify(this.registerForm.value, null, 4));
     if(<Employee>this.registerForm.value) {
       console.log('form submitted ===>>>');
       this.commonService.addEmployee(this.registerForm.value).subscribe(
