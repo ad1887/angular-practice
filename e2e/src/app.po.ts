@@ -14,15 +14,15 @@ export class AppPage {
   }
 
   waitForAngular() {
-    browser.waitForAngular();
+    browser.waitForAngular() as Promise<void>;
   }
 
   submtBtn () {
-    return element(by.className('saveFrm'));
+    return element(by.className('saveFrm')).click() as Promise<void>;
   }
 
   getValidationErrMsg () {
-    return element(by.css('.form-group .invalid-feedback')).isPresent();
+    return element(by.css('.form-group .invalid-feedback')).isPresent() as Promise<boolean>;
   }
 
   setFormFieldsVals (empMockData) {

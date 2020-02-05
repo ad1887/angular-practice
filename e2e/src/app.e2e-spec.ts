@@ -15,8 +15,7 @@ describe('Angular Practice App', () => {
   });
 
   it('should check the validation messages on blank form submission', () => {
-    browser.sleep(3000).then(() => {
-      page.submtBtn().click();
+    browser.wait(page.submtBtn(), 3000, 'submitting blank form').then(() => {
       // verify if err mesg found
       expect(page.getValidationErrMsg()).toBe(true);
     });
@@ -29,13 +28,11 @@ describe('Angular Practice App', () => {
       page.setFormFieldsVals(empMockData);
       // verify if no err mesg found
       expect(page.getValidationErrMsg()).toBe(false);
-      page.submtBtn().click().then(() => {
-        browser.sleep(5000).then(() => {
-          // verify if new record added in employee list
-          page.getEmpListSize().then((empl) => {
-            console.log('count after added new employee in the list', empl.length);
-            expect(empl.length).toBeGreaterThan(empListSize);
-          });
+      browser.sleep(5000).then(() => {
+        page.submtBtn();
+        page.getEmpListSize().then((empl) => {
+          console.log('count after added new employee in the list', empl.length);
+          expect(empl.length).toBeGreaterThan(empListSize);
         });
       });
     });
