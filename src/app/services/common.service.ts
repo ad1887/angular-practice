@@ -13,13 +13,6 @@ export class CommonService {
   constructor(private http: HttpClient) { }
 
   public getEmployData(): any {
-    // const employeeObservable = new Observable(observer => {
-    //   setTimeout(() => {
-    //     observer.next(this.empData);
-    //     observer.complete();
-    //   }, 1000);
-    // });
-    // return employeeObservable;
     return this.http.get(this.apiUrl + 'employee');
   }
 
