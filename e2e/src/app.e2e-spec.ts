@@ -1,5 +1,5 @@
 import { AppPage } from './app.po';
-import { browser, logging } from 'protractor';
+import { logging } from 'protractor';
 import { empMockData } from './mockdata'
 
 describe('Angular Practice App', () => {
@@ -15,7 +15,10 @@ describe('Angular Practice App', () => {
   });
 
   it('should check the validation messages on blank form submission', () => {
-    browser.wait(page.submtBtn(), 3000, 'submitting blank form').then(() => {
+    page.wait(3000).then(() => {
+      page.submtBtn();
+    });
+    page.wait(5000).then(() => {
       // verify if err mesg found
       expect(page.getValidationErrMsg()).toBe(true);
     });
@@ -28,7 +31,7 @@ describe('Angular Practice App', () => {
       page.setFormFieldsVals(empMockData);
       // verify if no err mesg found
       expect(page.getValidationErrMsg()).toBe(false);
-      browser.sleep(5000).then(() => {
+      page.wait(5000).then(() => {
         page.submtBtn();
         page.getEmpListSize().then((empl) => {
           console.log('count after added new employee in the list', empl.length);

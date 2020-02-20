@@ -26,7 +26,7 @@ module.exports = function (config) {
     colors: true,
     logLevel: config.LOG_INFO,
     autoWatch: true,
-    browsers: ['Chrome', 'Firefox'],
+    browsers: ['Chrome'], //replace with 'Firefox' to run the specs in firefox browser
     singleRun: false,
     restartOnFileChange: true
   });

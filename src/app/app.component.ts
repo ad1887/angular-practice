@@ -56,7 +56,7 @@ export class AppComponent {
   }
   getEmployeeData = () => {
     this.commonService.getEmployData().subscribe(
-      response => this.empData = response.data,
+      response => this.empData = <Employee[]>response.data,
       error => console.log('error in employees data ==>>', error)
     );
   }

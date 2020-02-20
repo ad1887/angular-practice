@@ -9,8 +9,8 @@ export class AppPage {
     return element(by.css('app-root .container h3')).getText() as Promise<string>;
   }
 
-  wait(promise, time, msg) {
-    browser.wait(promise, time, msg);
+  wait(time) {
+    return browser.sleep(time) as Promise<any>;
   }
 
   waitForAngular() {

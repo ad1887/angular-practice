@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Employee } from '../models/Employee.model';
-// import { Observable } from 'rxjs';
+import { EmpData } from '../models/empdataResponse.model';
+import { Observable } from 'rxjs';
 import { Users } from '../mockdata/Users'
 import { HttpClient } from '@angular/common/http';
-
 @Injectable({
   providedIn: 'root'
 })
@@ -12,11 +12,15 @@ export class CommonService {
   apiUrl = 'http://localhost:3000/api/';
   constructor(private http: HttpClient) { }
 
-  public getEmployData(): any {
-    return this.http.get(this.apiUrl + 'employee');
+  public getEmployData(): Observable<EmpData> {
+    return this.http.get<EmpData>(this.apiUrl + 'employee');
   }
 
   public addEmployee(empData: Employee): any {
     return this.http.post(this.apiUrl + 'employee', empData);
+  }
+
+  public add(x:number, y:number): number {
+    return x + y;
   }
 }
