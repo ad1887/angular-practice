@@ -4,12 +4,13 @@ import { EmpData } from '../models/empdataResponse.model';
 import { Observable } from 'rxjs';
 import { Users } from '../mockdata/Users'
 import { HttpClient } from '@angular/common/http';
+import { Constants } from '../constants/app.constant';
 @Injectable({
   providedIn: 'root'
 })
 export class CommonService {
   empData: Employee[] = Users;
-  apiUrl = 'http://localhost:3000/api/';
+  apiUrl = Constants.apiUrl;
   constructor(private http: HttpClient) { }
 
   public getEmployData(): Observable<EmpData> {

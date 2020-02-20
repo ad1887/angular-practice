@@ -1,18 +1,17 @@
 import { TestBed, async, ComponentFixture, inject } from '@angular/core/testing';
 import { AppComponent } from './app.component';
 import { ReactiveFormsModule, FormBuilder } from '@angular/forms';
-import { By } from '@angular/platform-browser';
 import { CommonService } from './services/common.service';
-import { HttpClientModule } from '@angular/common/http';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { Users } from './mockdata/Users';
+import { Constants } from './constants/app.constant';
 
 describe('AppComponent', () => {
   let fixture: ComponentFixture<AppComponent>;
   let component: AppComponent;
   const formBuilder: FormBuilder = new FormBuilder();
   let service: CommonService;
-  let apiUrl = 'http://localhost:3000/api/';
+  let apiUrl = Constants.apiUrl;
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
