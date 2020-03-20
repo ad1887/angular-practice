@@ -3,15 +3,14 @@ import { AppComponent } from './app.component';
 import { ReactiveFormsModule, FormBuilder } from '@angular/forms';
 import { CommonService } from './services/common.service';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
-import { Users } from './mockdata/Users';
 import { Constants } from './constants/app.constant';
 
-describe('AppComponent', () => {
+xdescribe('AppComponent', () => {
   let fixture: ComponentFixture<AppComponent>;
   let component: AppComponent;
   const formBuilder: FormBuilder = new FormBuilder();
+  let httpMock: HttpTestingController;
   let service: CommonService;
-  let apiUrl = Constants.apiUrl;
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
@@ -23,6 +22,9 @@ describe('AppComponent', () => {
       ],
       providers: [CommonService]
     }).compileComponents();
+
+    service = TestBed.get(CommonService);
+    httpMock = TestBed.get(HttpTestingController);
   }));
 
   beforeEach(() => {
@@ -62,32 +64,6 @@ describe('AppComponent', () => {
 
   it('should initiate service', inject([CommonService], (service:CommonService) => {
       expect(service).toBeDefined();
-  }));
-
-  it('should have add function in service', inject([CommonService], (service:CommonService) => {
-      expect(service.add).toBeTruthy();
-  }));
-
-  it('should add correctly', inject([CommonService], (service:CommonService) => {
-    expect(service.add(2,3)).toEqual(5);
-  }));
-
-  xit('should fetch the employees data from common service', inject([CommonService, HttpTestingController], (service: CommonService, httpMock: HttpTestingController) => {
-
-    // call service
-    service.getEmployData().subscribe((res) => {
-      console.log('response >>>', res.data.length);
-      expect(res.data.length).toBe(4);
-    });
-
-    // set the expectations for the HttpClient mock
-    let req = httpMock.expectOne(apiUrl + 'employee');
-    expect(req.request.url).toBe(apiUrl + 'employee');
-    expect(req.request.method).toEqual('GET');
-
-    // set the fake data to be returned by the mock
-    req.flush(Users); 
-    httpMock.verify();
   }));
 
   // it('should render title', () => {
